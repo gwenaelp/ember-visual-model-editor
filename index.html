@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></script>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></script>
+	<script type="text/javascript" src="lib/mousetrap.min.js"></script>
+	<script type="text/javascript" src="lib/joint/joint.js"></script>
+	<script type="text/javascript" src="lib/joint/joint.shapes.uml.js"></script>
+	<script type="text/javascript" src="lib/joint/joint.shapes.devs.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/joint/joint.css" />
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+
+	<script type="text/javascript" src="lib/mmenu/js/jquery.mmenu.min.all.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/mmenu/css/jquery.mmenu.all.css" />
+	<link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/1.4.1/css/ionicons.min.css" />
+
+
+	<link href="lib/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+	<script type="text/javascript" src="lib/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+	<script src="lib/context.js"></script>
+
+	<script type="text/javascript" src="app/prototypes.js"></script>
+	<script type="text/javascript" src="app/ui/editableUtils.js"></script>
+	<script type="text/javascript" src="app/ui/generation.js"></script>
+	<script type="text/javascript" src="app/ui/events.js"></script>
+	<script type="text/javascript" src="app/ui/actionmanager.js"></script>
+	<script type="text/javascript" src="app/ui/actions/delete.js"></script>
+	<script type="text/javascript" src="app/graph/events.js"></script>
+	<script type="text/javascript" src="app/graph/fixtures.js"></script>
+
+	<script type="text/javascript" src="app/graph/schemas/uml.js"></script>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<a class="brand" href="#">Diagram Creator</a>
+			<div class="btn-toolbar pull-left" style="margin:0">
+				<div class="btn-group" data-toggle="buttons-radio">
+					<button type="button" class="btn btn-primary"><i class="ion-edit icon-white"></i></button>
+					<button type="button" class="btn btn-primary"><i class="ion-arrow-move icon-white"></i></button>
+				</div>
+				<div class="btn-group">
+					<button id="undoActionButton" type="button" class="btn"><i class="ion-reply"></i></button>
+					<button id="redoActionButton" type="button" class="btn"><i class="ion-forward"></i></button>
+				</div>
+			</div>
+			<ul class="nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">File <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a id="exportMenu" href="#">Export</a></li>
+						<li><a id="loadMenu" href="#">Load</a></li>
+						<li><a id="saveMenu" href="#">Save</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Window<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a id="toggleToolsPalette" href="#"><i class="ion-settings"></i> Show/hide tools palette</a></li>
+					</ul>
+
+				</li>
+			</ul>
+			<div class="btn-toolbar pull-right" style="margin:0; margin-right:10px">
+				<div class="btn-group">
+					<a id="zoomInButton" class="btn" href="#"><i class="icon-zoom-in"></i></a>
+					<a id="zoomOutButton" class="btn" href="#"><i class="icon-zoom-out"></i></a>
+					 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+						100 %
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="#">50 %</a></li>
+						<li><a href="#">90 %</a></li>
+						<li><a href="#">110 %</a></li>
+						<li><a href="#">150 %</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="content">
+	<div id="mmenu" style="margin-top:40px;">
+		<div>
+			<div id="mmenuOptions" class="pull-right">
+				<a id="hideToolsPalette" href="#"><i class="ion-chevron-left"></i></a><br/>
+				<a id="lockToolsPalette" href="#"><i class="ion-locked"></i></a>
+			</div>
+			<div class="selectedItem">
+				<h3>Selected item</h3>
+				<div id="selectedItemName">No item selected</div>
+
+				<h3>Actions</h3>
+				<div class="btn-toolbar">
+					<div class="btn-group">
+						<a id="duplicateButton" class="btn" href="#"><i class="icon-repeat"></i></a>
+						<a id="deleteButton" class="btn" href="#"><i class="ion-trash-a"></i></a>
+						<a id="toBackButton" class="btn" href="#"><i class="ion-arrow-down-c"></i></a>
+						<a id="toFrontButton" class="btn" href="#"><i class="ion-arrow-up-c"></i></a>
+					</div>
+				</div>
+			</div>
+			<ul class="nav nav-tabs" id="menuTabs">
+				<li id="addElementTab" data-type="addElementTabContent" class="active"><a href="#">Add element</a></li>
+				<li id="propertiesTab" data-type="propertiesTabContent"><a href="#">Properties</a></li>
+			</ul>
+			<div id="addElementTabContent" class="sideBarTabContent">
+				<ul id="addItemList" class="nav nav-list" style="margin-bottom:30px">
+				</ul>
+			</div>
+			<div id="propertiesTabContent" class="sideBarTabContent" style="display:none">
+			</div>
+		</div>
+	</div>
+		<div id="diagram"></div>
+	</div>
+
+	<div id="cursor_icon" style="position:fixed;"></div>
+
+</body>
+</html>

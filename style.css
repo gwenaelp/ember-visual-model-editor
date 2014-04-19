@@ -1,0 +1,37 @@
+#mm-blocker{
+	height: 0;
+	display: none !important;
+}
+
+.navbar-inner {
+	padding-left: 10px !important;
+}
+
+#menuTabs {
+	padding-top:20px;
+}
+
+#diagram {
+	/*background: url(img/tiny_grid.png)*/
+}
+
+#cursor_icon {
+	border: 3px solid black;
+	background: #CCCC00;
+}
+
+#mmenuOptions {
+	background: #ccc;
+	border-radius: 8px 0 0 8px;
+	padding:5px;
+	padding-left:7px;
+	margin-right:-20px;
+}
+
+#mmenuOptions:hover a {
+	padding-right: 10px;
+}
+
+i{
+	font-size: 110%;
+}
